@@ -25,6 +25,7 @@ void Vector::add(int num, int pos)
 {
     numbers[pos] += num;
 }
+
 void Vector::print() const
 {
     for (int i = 0; i < 10; i++)

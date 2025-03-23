@@ -2,30 +2,23 @@
 #include <iostream>
 using namespace std;
 
+//Rational.h
+#include <iostream>
+using namespace std;
+
 class Rational
 {
 private:
-	int numerator = 1;
-	int denominator = 1;
+    int numerator;
+    int denominator;
+    int gcd();
 public:
-
-	Rational(int n, int d) : numerator(n), denominator(d)
-	{
-		numerator = 6;
-		denominator = 7;
-	}
-
-	void setNumerator(int x)
-	{
-		numerator = x;
-	}
-	void setDenominator(int y)
-	{
-		denominator = y;
-	}
-
-	void print()
-	{
-		cout << numerator << '/' << denominator << '\n';
-	}
+    Rational(int x = 1, int y = 1);
+    Rational(const Rational& p);
+    int getNumerator() const { return numerator; }
+    int getDenominator() const { return denominator; }
+    void reduce();
+    void mult(const Rational& r2);
+    bool equal(Rational r2);
+    void print();
 };

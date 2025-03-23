@@ -1,6 +1,7 @@
 //Rational.h
 #include <iostream>
 using namespace std;
+
 class Rational
 {
 private:
