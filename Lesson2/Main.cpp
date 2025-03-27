@@ -1,9 +1,22 @@
 //main.cpp
 #include "Rational.h"
 #include "Vector.h"
+#include "Rect.h"
 
 int main()
 {
+
+	Rect rec1(5,7);
+	rec1.length = 6;
+
+	Rect rec2;
+
+	Rect rec3(4);
+
+	rec1.printArea();
+
+
+
 	//Rational  num1, num2;
 	//num1.print(); // 1/1
 	//num2.print(); // 1/1

@@ -37,6 +37,9 @@ int main()
 	cout << "After multiply num1 = ";
 	num1.print();
 
+	num2 = num1;
+	num2 = nu
+
 	return 0;
 }
 
