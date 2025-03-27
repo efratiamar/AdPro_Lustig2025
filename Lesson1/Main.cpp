@@ -38,7 +38,6 @@ int main()
 	num1.print();
 
 	num2 = num1;
-	num2 = nu
 
 	return 0;
 }
