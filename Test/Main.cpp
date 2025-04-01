@@ -85,85 +85,81 @@ MyClass::~MyClass()
 	cout << "dtor: " << num << endl;
 }
 
-MyClass func(int n)
+MyClass func1(int n)
 {
 	MyClass mc(n);
-	// …
+	//...
 	return mc;
 }
 
+void func2(MyClass mc)
+{
+	//...
+}
+
+
 int main()
 {
-	cout << "1 ----------------" << endl;
-
+	cout << "\n ---------------- A ----------------\n";
 	MyClass a(1); //ctor
-	cout << "2 ----------------" << endl;
+	
+	cout << "\n ---------------- B ----------------\n";
+	MyClass b = a; //copy ctor
+	
+	cout << "\n ---------------- C ----------------\n";
+	a = func1(3); //ctor, move assignment op, dtor
 
-	MyClass b(a); //copy ctor
-	cout << "3 ----------------" << endl;
-
-	MyClass c(move(a)); //move ctor
-	cout << "4 ----------------" << endl;
-
-	MyClass d = a; //copy ctor
-	cout << "5 ----------------" << endl;
-
-	MyClass e = move(a); //move ctor
-	cout << "6 ----------------" << endl;
-
-	a = func(3); //ctor, move assignment op, dtor
-	cout << "7 ----------------" << endl;
-
+	cout << "\n ---------------- D ----------------\n";
 	a = b; //assignment op
-	cout << "8 ----------------" << endl;
 
-	MyClass f = func(4); //ctor ???????
-	cout << "9 ----------------" << endl;
+	cout << "\n ---------------- E ----------------\n";
+	MyClass c = func1(4); //ctor ???????
 
+	cout << "\n ---------------- F ----------------\n";
+	func2(c); //copy ctor, dtor
+
+	cout << "\n ---------------- G ----------------\n";
 	try
 	{
 		throw a;
 	}
-	catch (MyClass c) //copy ctor X 2 , dtor X 2- why ??????
+	catch (MyClass c) //copy ctor, copy ctor, exception, dtor, dtor - why ??????
 	{
-		cout << "Caught an exception" << endl;
+		cout << "exception" << endl;
 	}
-	cout << "10 ----------------" << endl;
 
-	//dtor X 5
+	cout << "\n ---------------- H ----------------\n";
+	//dtor X 3
 }
 
 /*
-1 ----------------
+
+ ---------------- A ----------------
 ctor: 1
-2 ----------------
+
+ ---------------- B ----------------
 copy ctor: 1
-3 ----------------
-move ctor: 1
-4 ----------------
-copy ctor: 1
-5 ----------------
-move ctor: 1
-6 ----------------
+
+ ---------------- C ----------------
 ctor: 3
 move assignment op: 3
 dtor: 3
-7 ----------------
+
+ ---------------- D ----------------
 assignment op: 1
-8 ----------------
+
+ ---------------- E ----------------
 ctor: 4
-9 ----------------
+
+ ---------------- F ----------------
 copy ctor: 1
 copy ctor: 1
-Caught an exception
-dtor: 1
-dtor: 1
-10 ----------------
-dtor: 4
-dtor: 1
-dtor: 1
-dtor: 1
+exception
 dtor: 1
 dtor: 1
 
+ ---------------- G ----------------
+dtor: 4
+dtor: 1
+dtor: 1
 */
