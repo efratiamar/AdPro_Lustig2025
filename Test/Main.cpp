@@ -12,7 +12,7 @@ public:
 	MyClass(const MyClass& other); //copy ctor
 	MyClass(MyClass&& other); //move ctor
 	MyClass& operator=(const MyClass& other); //assignment operator
-	MyClass& operator=(MyClass&& other); //move assignment operator
+	//MyClass& operator=(MyClass&& other); //move assignment operator
 	~MyClass();
 };
 
@@ -63,18 +63,18 @@ MyClass& MyClass::operator=(const MyClass& other)
 	return *this;
 }
 
-MyClass& MyClass::operator=(MyClass&& other)
-{
-	if (arr)
-		delete[] arr;
-
-	num = other.num;
-	arr = other.arr;
-	other.arr = nullptr;
-
-	cout << "move assignment op: " << num << endl;
-	return *this;
-}
+//MyClass& MyClass::operator=(MyClass&& other)
+//{
+//	if (arr)
+//		delete[] arr;
+//
+//	num = other.num;
+//	arr = other.arr;
+//	other.arr = nullptr;
+//
+//	cout << "move assignment op: " << num << endl;
+//	return *this;
+//}
 
 MyClass::~MyClass()
 {
