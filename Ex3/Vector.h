@@ -1,5 +1,8 @@
 #pragma once
 
+#include <iostream>
+using namespace std;
+
 class Vector
 {
 	int* arr;
@@ -21,4 +24,10 @@ public:
 	int at(int i) const;
 	void print() const;
 	void sort();
+
+	friend ostream& operator<<(ostream& os, const Vector& v);
 };
+
+
+
+

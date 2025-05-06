@@ -1,3 +1,5 @@
+
+#define _CRT_SECURE_NO_WARNINGS
 #include "MyString.h"
 #include <cstring>
 #include <iostream>
@@ -145,48 +147,6 @@ MyString MyString::operator*(int n) const
 	return t;
 }
 
-MyString func()
-{
-	MyString t("QWE");
-	//...
-	return t;
-}
-
-int main()
-{
-	MyString ms1("abc defg");
-
-	MyString ms2(ms1); //copy ctor
-
-	MyString ms3("124 twetgew");
-	ms3 = ms1; //assign op
-
-	ms3 = ms1 = ms2; //assign op
-
-	MyString ms4 = func(); //move ctor
-
-	ms4 = func(); //move assign op
-
-	if (ms1 == ms2)
-	{
-
-	}
-
-	if (ms1 < ms2)
-	{
-
-	}
-
-	ms1 = ms2 + ms3;
-
-	ms1 = ms2 * 5;
 
 
-	string s1 = "efrat amar";
-	s1.at(3); //a
-	s1[0] = 'E';// Efrat amar
 
-	const char* p = s1.c_str();
-
-
-}

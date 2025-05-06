@@ -1,5 +1,6 @@
 #include "Vector.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 Vector func()
@@ -14,8 +15,62 @@ Vector func()
 	return a;
 }
 
+//////////////////////////////////
+ostream& operator<<(ostream& os, const Vector& v)
+{
+	for (int i = 0; i < v.size; i++)
+		os << v.arr[i] << ' ';
+	os << endl;
+	return os;
+}
 
+//main Ex 5
 int main()
+{
+	string fileName;
+	cout << "Enter file name: ";
+	cin >> fileName;
+
+	ifstream myFile_R;
+	myFile_R.open(fileName); //open file for reading
+
+	if (!myFile_R)
+	{
+		cout << "error opening file " << fileName << " for reading" << endl;
+		return -1;
+	}
+
+	Vector v(50);
+	int i = 0;
+	while (!myFile_R.eof() && i++ < 50)
+	{
+		int num;
+		myFile_R >> num;
+		v.addLast(num);
+	}
+
+	v.sort();
+
+	myFile_R.close();
+
+	ofstream myFile_W;
+	myFile_W.open(fileName);
+
+	if (!myFile_W)
+	{
+		cout << "error opening file " << fileName << " for writing" << endl;
+		return -1;
+	}
+
+	myFile_W << v;
+
+
+	myFile_W.close();
+
+
+}
+
+void mainEx3()
 {
 
 	Vector v3(5); // ctor
