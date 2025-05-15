@@ -2,7 +2,7 @@
 #include "Point.h"	
 #include<cmath>
 
-Point::Point(int _x, int _y) : x(_x), y(_y)
+Point::Point(int _x, int _y) :x(_x), y(_y)
 {}
 
 bool Point::operator!=(Point p)
@@ -10,7 +10,7 @@ bool Point::operator!=(Point p)
     return x != p.x || y != p.y;
 }
 
-ostream& operator<<(ostream& os, Point p)
+ostream& operator<<(ostream& os, const Point& p)
 {
     os << '(' << p.x << ',' << p.y << ')' << endl;
     return os;
