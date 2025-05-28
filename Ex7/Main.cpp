@@ -1,8 +1,27 @@
 #include <iostream>
 #include "List.h"
 using namespace std;
+#include "TailList.h"
 
 int main()
+{
+    TailList tls;
+    
+    tls.addFirst(5);//5
+    tls.addFirst(6);//6 5
+    tls.removeFirst(); //5
+    int x = tls.firstElement(); //x =5
+    tls.addLast(8); //5 8
+    tls.addLast(10); //5 8 10
+
+    List* ptl = new TailList();
+
+    //...
+
+    delete ptl;
+}
+
+int mainList()
 {
     int element;
     List ls1, ls2;

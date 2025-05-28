@@ -2,6 +2,7 @@
 
 class List
 {
+protected:
 	class Link
 	{
 	public:
@@ -15,7 +16,7 @@ class List
 public:
 	List();
 	List(const List& ls2);
-	~List();
+	virtual ~List();
 	bool isEmpty();
 	void addFirst(int value);
 	void removeFirst();

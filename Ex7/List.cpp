@@ -3,7 +3,7 @@
 List::Link::Link(int k, Link* n) : key(k), next(n)
 {}
 
-List::List()
+List::List() 
 {
 	head = nullptr;
 }
@@ -15,13 +15,13 @@ List::List(const List& l)
 		head = nullptr;
 	else
 	{
-		head = new Link((l.head)->value, nullptr);
+		head = new Link((l.head)->key, nullptr);
 		src = l.head;
 		trg = head;
 		while (src->next != nullptr)
 		{
 			trg->next = new Link
-			((src->next)->value, nullptr);
+			((src->next)->key, nullptr);
 			src = src->next;
 			trg = trg->next;
 		}
