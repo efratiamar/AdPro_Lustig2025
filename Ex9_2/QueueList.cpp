@@ -1,40 +1,43 @@
 #include "QueueList.h"
 
-//== class QueueList implementation ==
-
-QueueList::QueueList() : data()
+void QueueList::enqueue(int value)
 {
-    // no further initialization
-}
-
-QueueList::QueueList(const QueueList& v)
-    : data(v.data)
-{}
-
-
-void QueueList::clear()
-{
-    data.clear();
+	data.addLast(value);
 }
 
 int QueueList::dequeue()
 {
-    int result = data.firstElement();
-    data.removeFirst();
-    return result;
+	try
+	{
+		int f = data.firstElement();
+		data.removeFirst();
+		return f;
+	}
+	catch (...)
+	{
+		throw "Underflow - cannot dequeqe from an empty queue";
+	}
+
 }
 
-void QueueList::enqueue(int value)
+int QueueList::front() const
 {
-    data.addToEnd(value);
-}
-
-int QueueList::front()
-{
-    return data.firstElement();
+	try
+	{
+		return data.firstElement();
+	}
+	catch (...)
+	{
+		throw "Underflow - cannot dequeqe from an empty queue";
+	}
 }
 
 bool QueueList::isEmpty() const
 {
-    return data.isEmpty();
+	return data.isEmpty()
+}
+
+void QueueList::clear()
+{
+	data.clear();
 }

@@ -1,45 +1,18 @@
 #pragma once
-#include "Stack.h"         
-#include "Vector.h"    //targil 3
-//--------------------------------
-//  class StackVector
-//  Stack implemented using Vector
-//--------------------------------
+#include "Stack.h"
+#include "Vector.h"
 
 class StackVector : public Stack
 {
 public:
-	StackVector(int capacity);
-	
-	void clear() override;
-	bool isEmpty() const override;
-	int pop() override;
-	void push(int value) override;
-	int top() override;
+	void push(int value) override final;
+	int pop() override final;
+	int top() const override final;
+	bool isEmpty() const override final;
+	void clear()  override final;
 
-	
+	StackVector(int _cap) : data(_cap) {};
+
 private:
 	Vector data;
 };
-
-
-/*
-class StackVector : public Stack
-{
-public:
-	// constructor requires size
-	StackVector(int capacity);
-	StackVector(const StackVector& s);
-
-	// Stack operations
-	void clear() override;
-	bool isEmpty() const override;
-	int pop() override;
-	void push(int value) override;
-	int top()override;
-
-protected:
-	// data fields
-	Vector data;
-};
-*/

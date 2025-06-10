@@ -1,26 +1,18 @@
 #pragma once
 #include "Stack.h"
-#include "List.h"	//targil 6
-//--------------------------------
-//  class StackList
-//  Stack implemented using List operations
-//--------------------------------
+#include "List.h"
 
 class StackList : public Stack
 {
 public:
-    StackList();
-    //StackList(const StackList&);
+	void push(int value) override final;
+	int pop() override final;
+	int top() const override final;
+	bool isEmpty() const override final;
+	void clear()  override final;
 
+	StackList() : data() {};
 
-    // Stack operations
-    void clear()override;
-    bool isEmpty() const override;
-    int pop()override;
-    void push(int value) override;
-    int top()override;
-
-protected:
-    // data fields
-    List data;
+private:
+	List data;
 };

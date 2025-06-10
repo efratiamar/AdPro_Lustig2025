@@ -1,28 +1,17 @@
 #pragma once
-#include"Queue.h"	//home work 3
-#include"RoundVector.h"
-//--------------------------------
-//  class QueueVector
-//  Queue implemented using 
-//  round vector operations
-//--------------------------------
+#include "Queue.h"
+#include "RoundVector.h"
+
 class QueueVector : public Queue
 {
 public:
-	// constructor requires a size
-	QueueVector(int max);
-	//QueueVector(const QueueVector&);
+	void enqueue(int value) override final;
+	int dequeue()  override final;
+	int front() const  override final;
+	bool isEmpty() const  override final;
+	void clear()  override final;
 
-	// implement Queue protocol
-	void clear() override;
-	int dequeue() override;
-	void enqueue(int value) override;
-	int front() override;
-	bool isEmpty() const override;
+	QueueVector(int _cap) : data(_cap) {};
 private:
 	RoundVector data;
-
 };
-
-
-

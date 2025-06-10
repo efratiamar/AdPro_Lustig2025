@@ -2,29 +2,27 @@
 
 class List
 {
+protected:
 	class Link
 	{
-	//private:
-	//	int key;
-	//	Link* next;
-	//	friend class List;
 	public:
 		int key;
 		Link* next;
-		Link(int _k, Link* _n = nullptr);
+		Link(int k, Link* n);
 	};
 
 	Link* head;
-
 public:
-	List();	
-	List(const List& ls2);
+	List();
+	List(const List& ls);
 	~List();
 
 	bool isEmpty() const;
-	void add(int value);
+	void addFirst(int val);
 	void removeFirst();
 	int firstElement() const;
 	bool search(const int& value) const;
 	void clear();
+
+
 };

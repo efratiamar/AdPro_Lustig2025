@@ -1,20 +1,8 @@
 #include "StackList.h"
 
-StackList::StackList() : 
-	data(), Stack()
+void StackList::push(int value)
 {
-}
-
-
-// Stack operations
-void StackList::clear()
-{
-	data.clear();
-}
-
-bool StackList::isEmpty() const
-{
-	return data.isEmpty();
+	data.addFirst(value);
 }
 
 int StackList::pop()
@@ -27,89 +15,30 @@ int StackList::pop()
 	}
 	catch (...)
 	{
-		throw "underflow - cannot remove from empty Stack\n";
+		throw "Underflow - Stack is empty!";
 	}
-
 }
 
-void StackList::push(int value) 
+int StackList::top() const
 {
-	data.add(value);
-}
-
-int StackList::top()
-{
-
 	try
 	{
 		return data.firstElement();
 	}
 	catch (...)
 	{
-		throw "underflow - cannot show an empty Stack\n";
+		throw "Underflow - Stack is empty!";
 	}
 }
 
+bool StackList::isEmpty() const
+{
+	return data.isEmpty();
+}
+
+void StackList::clear()
+{
+	data.clear();
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-//#include "StackList.h"
-////--------------------------------
-////  class StackList implementation
-////--------------------------------
-//StackList::StackList() : data()
-//{
-//    // create and initialize a 
-//    // Stack based on Lists
-//}
-//
-//StackList::StackList(const
-//    StackList& lst)
-//    : data(lst.data)
-//{    /* copy constructor*/
-//}
-//
-//void StackList::clear()
-//{
-//    // clear all elements from Stack, 
-//    //by delete all values from List
-//    data.clear();
-//}
-//
-//bool StackList::isEmpty() const
-//{
-//    return data.isEmpty();
-//}
-//
-//int StackList::pop()
-//{
-//    // return and remove the top most
-//    // element in the Stack
-//    // get first element in List
-//    int result = data.firstElement();
-//    // remove element from List
-//    data.removeFirst();
-//    // return value
-//    return result;
-//}
-//
-//void StackList::push(int val)
-//{
-//    // push new value onto Stack
-//    data.add(val);
-//}
-//
-//int StackList::top()
-//{
-//    return data.firstElement();
-//}

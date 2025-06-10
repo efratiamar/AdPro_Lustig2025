@@ -1,13 +1,15 @@
 #include "QueueVector.h"
 
-
-QueueVector::QueueVector(int max) : data(max)
-{}
-
-// implement Queue protocol
-void QueueVector::clear()
+void QueueVector::enqueue(int value)
 {
-	data.clear();
+	try
+	{
+		data.addNext(value);
+	}
+	catch (...)
+	{
+		throw "Overflow - cannot enqueqe to a full queue";
+	}
 }
 
 int QueueVector::dequeue()
@@ -18,101 +20,29 @@ int QueueVector::dequeue()
 	}
 	catch (...)
 	{
-		throw "cannot remove from empty Q";
+		throw "Underflow - cannot dequeqe from an empty queue";
 	}
+
 }
 
-void QueueVector::enqueue(int value)
+int QueueVector::front() const
 {
 	try
 	{
-		data.addNext(value);
+		return data.firstValue();
 	}
 	catch (...)
 	{
-		throw "cannot add to full Q";
-	}
-}
-int QueueVector::front()
-{
-
-	try
-	{
-		data.firstValue();
-	}
-	catch (...)
-	{
-		throw "cannot get val from empty Q";
+		throw "Underflow - cannot dequeqe from an empty queue";
 	}
 }
 
 bool QueueVector::isEmpty() const
 {
-	return data.isEmpty();
+	return data.isEmpty()
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//#include "QueueVector.h"
-//
-////== class QueueVector implementation==
-//
-//QueueVector::QueueVector(int size)
-//	:data(size)
-//{
-//	// no further initialization
-//}
-//QueueVector::QueueVector(
-//	const QueueVector& Q)
-//	:data(Q.data)
-//{}
-//
-//void QueueVector::clear()
-//{
-//	data.clear();
-//}
-//
-//int QueueVector::dequeue()
-//{
-//	// can not dequeue from an empty queue
-//	if (isEmpty())
-//		throw "Queue is empty\n";
-//	int val = data.firstValue();
-//	data.removeFirst();
-//	return val;
-//}
-//
-//void QueueVector::enqueue(int val)
-//{
-//	try
-//	{
-//		data.addNext(val);
-//	}
-//	catch (const char* msg)
-//	{
-//		throw "the Queue is full\n";
-//	}
-//}
-//
-//int QueueVector::front()
-//{
-//	if (isEmpty())
-//		throw "Queue is empty\n";
-//	return data.firstValue();
-//}
-//
-//bool QueueVector::isEmpty() const
-//{
-//	return data.isEmpty();
-//}
+void QueueVector::clear()
+{
+	data.clear();
+}

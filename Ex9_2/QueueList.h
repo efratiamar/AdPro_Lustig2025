@@ -1,25 +1,16 @@
 #pragma once
 #include "Queue.h"
-#include "TailList.h"   //targil 7
-//--------------------------------
-// class QueueList
-// Queue implemented using List operations
-//--------------------------------
+#include "TailList.h"
 
 class QueueList : public Queue
 {
 public:
-	// constructors
-	QueueList();
-	QueueList(const QueueList& v);
+	void enqueue(int value) override final;
+	int dequeue()  override final;
+	int front() const  override final;
+	bool isEmpty() const  override final;
+	void clear()  override final;
 
-	// implement Queue protocol 
-	void clear() override;
-	int dequeue()override;
-	void enqueue(int value) override;
-	int front()override;
-	bool isEmpty() const override;
 private:
 	TailList data;
 };
-

@@ -65,7 +65,7 @@ int RoundVector::removeFirst()
 	return firstVal;
 }
 
-int RoundVector::firstValue()
+int RoundVector::firstValue() const
 {
 	//for future use
 	if (isEmpty())

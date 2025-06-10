@@ -1,43 +1,19 @@
 #pragma once
+
 #include "List.h"
 
 class TailList : public List
 {
-
-private:
-	Link* last;
+	Link* tail;
 
 public:
 	TailList();
 	~TailList();
-	void add(int value);
-	void removeFirst();
-	void clear();
 
-	void addToEnd(int value);
-	
+	void addFirst(int val); //override
+	void removeFirst(); //override
+	void clear();//override
+
+	void addLast(int value); //new method
+
 };
-
-////--------------------------------------
-//// class TailList
-//// a variation on Lists-can add elements 
-//// to the end as well as to front
-////--------------------------------------
-//#include "List.h"
-//class TailList : public List
-//{
-//public:
-//// constructors
-//	TailList();
-//   TailList(const TailList&);
-//
-//// override methods from class List
-//	void add(int value);
-//	void clear();
-//	void removeFirst();
-//// add element to the end of the List
-//	void addToEnd(int value);
-//protected:
-//// data area -- Link to end
-//	Link* last;
-//};

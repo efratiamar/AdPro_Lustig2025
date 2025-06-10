@@ -1,47 +1,41 @@
-#pragma once
 #include "Vector.h"
+#include <iostream>
+using namespace std;
 
-int Vector::getCapacity() const
-{
-	return capacity;
-}
 
 Vector::Vector(int _cap)
-	: capacity(_cap), size(0)
+	:capacity(_cap), size(0)
 {
-	numbers = new int[capacity];
-	if (!numbers)
-		throw "fail allocating Vector";
+	arr = new int[_cap];
 }
 
-//copy ctor
-Vector::Vector(const Vector& v2)
+Vector::Vector(const Vector& v)
 {
-	capacity = v2.getCapacity();
-	size = v2.getSize();
-
-	numbers = new int[capacity];
+	capacity = v.capacity;
+	size = v.size;
+	arr = new int[capacity];
 	for (int i = 0; i < size; i++)
-		numbers[i] = v2.numbers[i];
+	{
+		arr[i] = v.arr[i];
+	}
 }
 
-//move ctor
-Vector::Vector(Vector&& v2)
+Vector::Vector(Vector&& v)
 {
-	capacity = v2.getCapacity();
-	size = v2.getSize();
-
-	numbers = v2.numbers;
-	v2.numbers = nullptr;
+	capacity = v.capacity;
+	size = v.size;
+	arr = v.arr;
+	v.arr = nullptr;
 }
+
+
 
 Vector::~Vector()
 {
-	if (numbers)
-		delete[] numbers;
-	numbers = nullptr;
+	if (arr) //!!!
+		delete[] arr;
+	arr = nullptr;
 }
-
 
 int Vector::getSize() const
 {
@@ -50,31 +44,32 @@ int Vector::getSize() const
 
 bool Vector::isEmpty() const
 {
-	return size == 0;
+	return 0 == size;
 }
 
 void Vector::addLast(int k)
 {
-	if (size == capacity)
-		throw "Vector is full";
+	if (size < capacity)
+		arr[size++] = k;
 	else
-		numbers[size++] = k;
+		throw "Vector is full";
 }
 
-int Vector::lastValue()
+int Vector::lastValue() const
 {
-	if (!isEmpty())
-		return numbers[size - 1];
+	if (size != 0 && size < capacity)
+		return arr[size - 1];
 	else
 		throw "Vector is empty";
+
 }
 
 int Vector::removeLast()
 {
-	if (!isEmpty())
-		return numbers[--size];
+	if (size != 0)
+		return arr[--size];
 	else
-		throw "Vector is empty";
+		throw "vector is Empty!";
 }
 
 void Vector::clear()
@@ -84,20 +79,31 @@ void Vector::clear()
 
 int Vector::at(int i) const
 {
-	if (i < size && i >= 0)
-	{
-		return numbers[i];
-	}
-	else
-		throw "Index is out of range";
-
+	return arr[i];
 }
 
 void Vector::print() const
 {
 	for (int i = 0; i < size; i++)
-		cout << numbers[i] << " ";
+		cout << arr[i] << " ";
 	cout << endl;
 }
 
+void Vector::sort()
+{
+	int i, j;
+	for (i = 1; i < size; i++)
+	{
+		int tmp = arr[i];
+		for (j = i; j > 0 && tmp < arr[j - 1]; j--)
+			arr[j] = arr[j - 1];
+		arr[j] = tmp;
+	}
+}
 
+ostream& operator<<(ostream& os, const Vector& v2)
+{
+	for (int i = 0; i < v2.size; i++)
+		os << v2.arr[i] << " ";
+	return os;
+}

@@ -16,7 +16,7 @@ public:
 
 	void addNext(int val); //add val to the next empty place, after the last entered val
 	int removeFirst(); //remove the first value
-	int firstValue(); //return the first val (without removing it)
+	int firstValue() const; //return the first val (without removing it)
 
 	bool isEmpty() const;
 	void clear();

@@ -1,32 +1,29 @@
 #include "List.h"
 
-List::Link::Link(int _k, Link* _n) 
-	: key(_k), next(_n)
-{};
-
-List::List() : head(nullptr) {};
-
-List::List(const List& ls2)
+List::Link::Link(int k, Link* n) : key(k), next(n)
 {
-	if (ls2.isEmpty())
+}
+
+List::List()
+{
+	head = nullptr;
+}
+
+List::List(const List& ls)
+{
+	List temp;
+	Link* p1 = ls.head;
+	while (p1 != nullptr)
 	{
-		head = nullptr;
-		return;
+		temp.addFirst(p1->key);
 	}
 
-	Link * ptr2 = ls2.head;
-	Link* ptr1 = head;
-
-	ptr1 = new Link(ptr2->key);
-	head = ptr1;
-	ptr2 = ptr2->next;
-
-	while (ptr2 != nullptr)
+	Link* p2 = temp.head;
+	while (p2 != nullptr)
 	{
-		ptr1->next = new Link(ptr2->key);
-		ptr1 = ptr1->next;
-		ptr2 = ptr2->next;
+		addFirst(p2->key);
 	}
+
 }
 
 List::~List()
@@ -39,43 +36,41 @@ bool List::isEmpty() const
 	return head == nullptr;
 }
 
-void List::add(int value)
+void List::addFirst(int val)
 {
-	//Link* ptr = new Link(value);
-	//ptr->next = head;
-	//head = ptr;
+	Link* pNew = new Link(val, head);
+	head = pNew;
 
-	head = new Link(value, head);
+	//head = new Link(val, head);
 }
 
 void List::removeFirst()
 {
 	if (isEmpty())
-		throw "underflow - cannot remove from empty list\n";
+		throw "cannot remove from empty list";
 
-	Link* ptr = head;
+	Link* p = head;
 	head = head->next;
-	if (ptr)
-		delete ptr;
+	delete p;
 }
 
 int List::firstElement() const
 {
 	if (isEmpty())
-		throw "underflow - cannot get first value of empty list\n";
-
+		throw "cannot return value from empty list";
 	return head->key;
 }
 
 bool List::search(const int& value) const
 {
-	Link* ptr = head;
-	while (ptr != nullptr)
+	Link* p = head;
+	while (p != nullptr)
 	{
-		if (ptr->key == value)
+		if (p->key == value)
 			return true;
-		ptr = ptr->next;
+		p = p->next;
 	}
+
 	return false;
 }
 
