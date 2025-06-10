@@ -6,11 +6,37 @@ class QueueList : public Queue
 {
 public:
 	void enqueue(int value) override final;
-	int dequeue()  override final;
-	int front() const  override final;
-	bool isEmpty() const  override final;
-	void clear()  override final;
+	int dequeue() override final;
+	int front() const override final;
+	bool isEmpty() const override final;
+	void clear() override final;
 
+	QueueList() : Queue(), data() {};
 private:
 	TailList data;
 };
+
+
+
+
+
+
+
+
+
+
+//#include "Queue.h"
+//#include "TailList.h"
+//
+//class QueueList : public Queue
+//{
+//public:
+//	void enqueue(int value) override final;
+//	int dequeue()  override final;
+//	int front() const  override final;
+//	bool isEmpty() const  override final;
+//	void clear()  override final;
+//
+//private:
+//	TailList data;
+//};

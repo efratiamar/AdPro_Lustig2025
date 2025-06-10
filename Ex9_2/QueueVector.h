@@ -11,7 +11,7 @@ public:
 	bool isEmpty() const  override final;
 	void clear()  override final;
 
-	QueueVector(int _cap) : data(_cap) {};
+	QueueVector(int _cap): Queue(), data(_cap) {}
 private:
 	RoundVector data;
 };

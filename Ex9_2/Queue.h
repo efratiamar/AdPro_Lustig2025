@@ -2,6 +2,7 @@
 
 class Queue
 {
+public:
 	virtual void enqueue(int value) = 0;
 	virtual int dequeue() = 0;
 	virtual int front() const = 0;
