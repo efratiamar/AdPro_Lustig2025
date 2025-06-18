@@ -121,18 +121,21 @@ int main()
 		case allGraduate: //האם כל הסטודנטים זכאים לתעודת גמר
 			//זכאים סטודנטים עם ממוצע מעל 55 או 20 שעות מחקר						
 			//if( /* ??? ________________________________________ */ )
-			if (all_of(ls.begin(), ls.end(), [](Student* ps) 
-				{ 
-					if (ps->studType() == "PhD")
-						return ((PHD*)ps)->getResearchHours() > 20;
-					else
-						return ((BA*)ps)->average() > 55;
-				}
-			))
+			if (
+				all_of(ls.begin(), ls.end(), [](Student* ps)
+					{
+						if (ps->studType() == "PhD" && ((PHD*)ps)->getResearchHours() >= 20)
+							return true;
+						else if (ps->studType() != "PhD" && ((BA*)ps)->average() > 55)
+							return true;
+						else
+							return false;
+					})
+				)
 				cout << "all students can graduate\n";
-			else 
+			else
 				cout << "not all students can graduate\n";
-				break;
+			break;
 		case removePHDFailers:
 			//מחיקת את כל הסטודנטים לתואר שלישי שאינם לומדים קורסים בכלל
 			//??? ______________________________________________
@@ -143,7 +146,14 @@ int main()
 			// הדפסת הרשימה שלאחר המחיקה
 			//??? ______________________________________________
 
+			//option 1
 			for_each(ls.begin(), newLast, [](Student* ps) { ps->print(); });
+
+			//option 2
+			//ls.erase(newLast, ls.end());
+			//for_each(ls.begin(), ls.end(), [](Student* ps) { ps->print(); });
+
+
 
 			break;
 		};
